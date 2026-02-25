@@ -1,0 +1,159 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --canvas: #060c16;
+  --ink: #e9f1ff;
+  --line: rgba(148, 185, 255, 0.2);
+  --card: rgba(13, 23, 38, 0.74);
+}
+
+* {
+  border-color: var(--line);
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: clip;
+}
+
+body {
+  background:
+    radial-gradient(circle at 10% -10%, rgba(77, 131, 230, 0.25), transparent 46%),
+    radial-gradient(circle at 90% 0%, rgba(63, 143, 218, 0.2), transparent 44%),
+    linear-gradient(180deg, #07101e 0%, #050b15 100%);
+  color: var(--ink);
+  font-family: var(--font-body), sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading), sans-serif;
+  letter-spacing: -0.02em;
+}
+
+.section-shell {
+  @apply mx-auto w-full max-w-6xl px-4 sm:px-6;
+}
+
+.section-title {
+  @apply text-balance text-3xl font-semibold leading-tight text-slate-100 sm:text-4xl;
+}
+
+.section-copy {
+  @apply text-pretty text-base leading-relaxed text-slate-300 sm:text-lg;
+}
+
+.surface-card {
+  @apply rounded-2xl border border-white/10 bg-slate-900/60 shadow-card backdrop-blur-xl;
+}
+
+.button-base {
+  @apply inline-flex items-center justify-center rounded-full border border-white/20 bg-slate-900/40 px-6 py-3 text-sm font-semibold text-slate-200 transition-colors;
+}
+
+.button-base:hover {
+  @apply border-sky-200/40 text-white;
+}
+
+.button-primary {
+  @apply border-transparent bg-sky-300 text-slate-950;
+}
+
+.button-primary:hover {
+  @apply bg-sky-200 text-slate-950;
+}
+
+.stat-gradient {
+  background: linear-gradient(105deg, #0f3d8f 0%, #2b8de8 44%, #79cbff 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.shiny-text {
+  background-size: 220% 100%;
+  animation: shine 4.6s linear infinite;
+}
+
+@keyframes shine {
+  0% {
+    background-position: 100% center;
+  }
+  100% {
+    background-position: -100% center;
+  }
+}
+
+@keyframes blur-reveal {
+  from {
+    filter: blur(12px);
+    transform: translateY(10px);
+    opacity: 0;
+  }
+  to {
+    filter: blur(0);
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes float-soft {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, -8px, 0);
+  }
+}
+
+@keyframes rays {
+  0% {
+    transform: translate3d(-2%, 0, 0) rotate(0deg);
+  }
+  50% {
+    transform: translate3d(2%, 1%, 0) rotate(1.8deg);
+  }
+  100% {
+    transform: translate3d(-2%, 0, 0) rotate(0deg);
+  }
+}
+
+.reveal-once {
+  animation: blur-reveal 680ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+@media (max-width: 768px) {
+  .mobile-soften {
+    filter: saturate(0.82) opacity(0.78);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .shiny-text {
+    animation: none;
+    background-position: center;
+  }
+
+  .motion-fade-static {
+    filter: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
